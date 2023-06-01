@@ -1,0 +1,5 @@
+com\openclassrooms\notes\NotesApplication.class
+com\openclassrooms\notes\repository\NotesRepository.class
+com\openclassrooms\notes\controller\NotesController.class
+com\openclassrooms\notes\service\NotesService.class
+com\openclassrooms\notes\model\Notes.class
