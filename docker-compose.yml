@@ -1,0 +1,25 @@
+version: '3'
+services:
+  patient-service:
+    build:
+      context: ./patient
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    depends_on:
+      - mysql-db
+    networks:
+      - patient-sql
+
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mediscreen:3306/database?autoReconnect=true&useSSL=false
+    networks:
+      - patient-sql
+
+
+networks:
+  patient-sql:
+    driver: bridge
+
