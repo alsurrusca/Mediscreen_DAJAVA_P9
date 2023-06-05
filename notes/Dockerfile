@@ -5,9 +5,9 @@ FROM openjdk:21-slim
 RUN mkdir /app
 #Copy the app file from host machine to image filesystem
 
-COPY notes.jar /app
 COPY . /app
 #Set the directory for executing futur commands
 WORKDIR /app
 
 #Run the main class
+CMD ["java","-jar","target/spring-boot-skeleton-0.0.1-SNAPSHOT.jar"]
