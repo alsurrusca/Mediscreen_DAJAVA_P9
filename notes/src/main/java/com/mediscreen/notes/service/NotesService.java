@@ -18,6 +18,9 @@ public class NotesService {
     @Autowired
     private NotesRepository notesRepository;
 
+    public NotesService() {
+    }
+
     public List<Notes> findAllNotes() {
         List<Notes> notes = notesRepository.findAll();
         return notesRepository.findAll();}
@@ -61,5 +64,9 @@ public class NotesService {
 
     public Optional<Notes> getNoteById(String id) {
         return notesRepository.findById(id);
+    }
+
+    public List<Notes> getNoteByPatId(int patId) {
+        return notesRepository.findByPatId(patId);
     }
 }

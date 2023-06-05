@@ -1,7 +1,6 @@
 package com.mediscreen.notes.controller;
 
 import com.mediscreen.notes.model.Notes;
-import com.mediscreen.notes.repository.NotesRepository;
 import com.mediscreen.notes.service.NotesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +35,11 @@ public class NotesController {
     @GetMapping("/notes/{id}")
     public Optional<Notes> getNoteById(@PathVariable("id") String id) {
         return notesService.getNoteById(id);
+    }
+
+    @GetMapping("/notes/patient/{patId}")
+    List<Notes> getNoteByPatId(@PathVariable("patId") int patId){
+        return notesService.getNoteByPatId(patId);
     }
 
 
