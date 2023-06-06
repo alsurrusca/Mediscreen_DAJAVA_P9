@@ -1,25 +1,41 @@
 version: '3'
 services:
   patient-service:
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
     build:
       context: ./patient
       dockerfile: Dockerfile
     ports:
-      - 8081:8081
+      - "8081:8081"
     depends_on:
       - mysql-db
     networks:
       - patient-sql
 
   mysql-db:
+    container_name: mysql-db
     image: mysql:8.0
+    ports:
+      - "3307:3306"
+    expose:
+      - 3306
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mediscreen:3306/database?autoReconnect=true&useSSL=false
+      MYSQL_SERVERNAME: patient-db
+      MYSQL_ROOT_PASSWORD: root
     networks:
       - patient-sql
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - patient-sql
 
 networks:
   patient-sql:
     driver: bridge
-
